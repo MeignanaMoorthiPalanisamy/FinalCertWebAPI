@@ -7,6 +7,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FinalCert.Tests
 {
+    /// <summary>
+    /// User Controller Unit Test cases
+    /// </summary>
     [TestClass]
     public class UserControllerTests
     {
