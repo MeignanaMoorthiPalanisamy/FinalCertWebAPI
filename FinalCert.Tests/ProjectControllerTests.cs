@@ -1,17 +1,17 @@
 ﻿using DataAccessLayer;
 using FinalCertWebAPI.Controllers;
 using FinalCertWebAPI.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Net;
 using System.Web.Http.Results;
 
 namespace FinalCert.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ProjectControllerTests
     {
-        [TestMethod]
+        [Test]
         public void PutProject_ShouldReturnStatusCode()
         {
             var context = new TestProjectMangerContext();
@@ -22,20 +22,20 @@ namespace FinalCert.Tests
 
             var result = controller.PutProject(item.Project_Id, item) as StatusCodeResult;
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+            Assert.AreSame(result.GetType(), typeof(StatusCodeResult));
             Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void PutProject_ShouldFail_WhenDifferentID()
         {
             var controller = new ProjectsController(new TestProjectMangerContext());
 
             var badresult = controller.PutProject(999, GetDemoProjectDetail());
-            Assert.IsInstanceOfType(badresult, typeof(BadRequestResult));
+            Assert.AreSame(badresult.GetType(), typeof(BadRequestResult));
         }
 
-        [TestMethod]
+        [Test]
         public void PostProject_ShouldReturnSameProduct()
         {
             var context = new TestProjectMangerContext();
@@ -53,7 +53,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(result.Content.Project_Name, item.Project_Name);
         }
 
-        [TestMethod]
+        [Test]
         public void GetProject_ShouldReturnProjectWithSameID()
         {
             var context = new TestProjectMangerContext();
@@ -67,7 +67,7 @@ namespace FinalCert.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void GetProject_ShouldReturnNotFound()
         {
             var context = new TestProjectMangerContext();
@@ -80,7 +80,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(result.GetType(), typeof(NotFoundResult));
         }
 
-        [TestMethod]
+        [Test]
         public void GetProjects_ShouldReturnAllProjects()
         {
             var context = new TestProjectMangerContext();
@@ -94,7 +94,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(1, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteProject_ShouldReturnOK()
         {
             var context = new TestProjectMangerContext();
@@ -109,7 +109,7 @@ namespace FinalCert.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void DeleteProject_ShouldReturnNotFound()
         {
             var context = new TestProjectMangerContext();

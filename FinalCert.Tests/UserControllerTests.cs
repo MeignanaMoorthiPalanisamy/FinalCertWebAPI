@@ -3,17 +3,17 @@ using System.Net;
 using System.Web.Http.Results;
 using DataAccessLayer;
 using FinalCertWebAPI.Controllers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FinalCert.Tests
 {
     /// <summary>
     /// User Controller Unit Test cases covers most of the scenarios
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class UserControllerTests
     {
-        [TestMethod]
+        [Test]
         public void PutUser_ShouldReturnStatusCode()
         {
             var controller = new UserController(new TestProjectMangerContext());
@@ -22,20 +22,20 @@ namespace FinalCert.Tests
 
             var result = controller.PutUser(item.User_ID, item) as StatusCodeResult;
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(StatusCodeResult));
+            Assert.AreSame(result.GetType(), typeof(StatusCodeResult));
             Assert.AreEqual(HttpStatusCode.NoContent, result.StatusCode);
         }
 
-        [TestMethod]
+        [Test]
         public void PutUser_ShouldFail_WhenDifferentID()
         {
             var controller = new UserController(new TestProjectMangerContext());
 
             var badresult = controller.PutUser(999, GetDemoUser());
-            Assert.IsInstanceOfType(badresult, typeof(BadRequestResult));
+            Assert.AreSame(badresult.GetType(), typeof(BadRequestResult));
         }
 
-        [TestMethod]
+        [Test]
         public void PutUser_ModelStateError()
         {
             var controller = new UserController(new TestProjectMangerContext());
@@ -45,7 +45,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(invalidModelState.GetType().Name, "InvalidModelStateResult");
         }
 
-        [TestMethod]
+        [Test]
         public void PostUser_ShouldReturnSameProduct()
         {
             var controller = new UserController(new TestProjectMangerContext());
@@ -61,7 +61,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(result.Content.FirstName, item.FirstName);
         }
 
-        [TestMethod]
+        [Test]
         public void PostUser_ModelStateError()
         {
             var controller = new UserController(new TestProjectMangerContext());
@@ -71,7 +71,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(invalidModelState.GetType().Name, "InvalidModelStateResult");
         }
 
-        [TestMethod]
+        [Test]
         public void GetUser_ShouldReturnUserWithSameID()
         {
             var context = new TestProjectMangerContext();
@@ -85,7 +85,7 @@ namespace FinalCert.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void GetUser_ShouldReturnNotFound()
         {
             var context = new TestProjectMangerContext();
@@ -99,7 +99,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(result.GetType(), typeof(NotFoundResult));
         }
 
-        [TestMethod]
+        [Test]
         public void GetUsers_ShouldReturnAllUsers()
         {
             var context = new TestProjectMangerContext();
@@ -114,7 +114,7 @@ namespace FinalCert.Tests
             Assert.AreEqual(3, result.Local.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteUser_ShouldReturnOK()
         {
             var context = new TestProjectMangerContext();
@@ -129,7 +129,7 @@ namespace FinalCert.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void DeleteUser_ShouldReturnNotFound()
         {
             var context = new TestProjectMangerContext();
