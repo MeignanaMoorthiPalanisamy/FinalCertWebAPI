@@ -13,5 +13,9 @@ namespace FinalCertWebAPI.Models
         public Nullable<System.DateTime> EndDate { get; set; }
         public int Priority { get; set; }
         public int? User_ID { set; get; }
+
+        public int Total_Tasks { set; get; }
+
+        public int Completed_Tasks { set; get; }
     }
 }

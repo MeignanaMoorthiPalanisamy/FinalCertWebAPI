@@ -56,7 +56,9 @@ namespace FinalCertWebAPI.Controllers
                                StartDate = res.proj.StartDate,
                                EndDate = res.proj.EndDate,
                                Priority = (int)res.proj.Priority,
-                               User_ID = res.user.User_ID
+                               User_ID = res.user.User_ID,
+                               Total_Tasks = db.Tasks.Where( x => x.Project_ID == res.proj.Project_Id).Count(),
+                               Completed_Tasks = db.Tasks.Where(x => x.Project_ID == res.proj.Project_Id && x.Status == "Completed").Count()
                            }).ToList();
             return result;
         }
