@@ -15,16 +15,8 @@ namespace DataAccessLayer
 
     public partial class Parent_Task
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Parent_Task()
-        {
-            this.Tasks = new HashSet<Task>();
-        }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Parent_ID { get; set; }
         public string Parent_Task_Name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

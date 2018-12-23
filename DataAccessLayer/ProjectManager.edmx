@@ -46,43 +46,11 @@
           <Property Name="Project_ID" Type="int" />
           <Property Name="Task_ID" Type="int" />
         </EntityType>
-        <Association Name="FK__Task__Parent_ID__4F7CD00D">
-          <End Role="Parent_Task" Type="Self.Parent_Task" Multiplicity="0..1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Parent_Task">
-              <PropertyRef Name="Parent_ID" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="Parent_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Task__Project_ID__5070F446">
-          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Project_Id" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="Project_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="FinalFSEModelStoreContainer">
           <EntitySet Name="Parent_Task" EntityType="Self.Parent_Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Task__Parent_ID__4F7CD00D" Association="Self.FK__Task__Parent_ID__4F7CD00D">
-            <End Role="Parent_Task" EntitySet="Parent_Task" />
-            <End Role="Task" EntitySet="Task" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Task__Project_ID__5070F446" Association="Self.FK__Task__Project_ID__5070F446">
-            <End Role="Project" EntitySet="Project" />
-            <End Role="Task" EntitySet="Task" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -95,7 +63,6 @@
           </Key>
           <Property Name="Parent_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Parent_Task_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK__Task__Parent_ID__4F7CD00D" FromRole="Parent_Task" ToRole="Task" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -106,7 +73,6 @@
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="Priority" Type="Int32" />
-          <NavigationProperty Name="Tasks" Relationship="Self.FK__Task__Project_ID__5070F446" FromRole="Project" ToRole="Task" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
@@ -120,8 +86,6 @@
           <Property Name="End_Date" Type="DateTime" Precision="3" />
           <Property Name="Priority" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Parent_Task" Relationship="Self.FK__Task__Parent_ID__4F7CD00D" FromRole="Task" ToRole="Parent_Task" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Task__Project_ID__5070F446" FromRole="Task" ToRole="Project" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -134,43 +98,11 @@
           <Property Name="Project_ID" Type="Int32" />
           <Property Name="Task_ID" Type="Int32" />
         </EntityType>
-        <Association Name="FK__Task__Parent_ID__4F7CD00D">
-          <End Role="Parent_Task" Type="Self.Parent_Task" Multiplicity="0..1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Parent_Task">
-              <PropertyRef Name="Parent_ID" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="Parent_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Task__Project_ID__5070F446">
-          <End Role="Project" Type="Self.Project" Multiplicity="0..1" />
-          <End Role="Task" Type="Self.Task" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Project">
-              <PropertyRef Name="Project_Id" />
-            </Principal>
-            <Dependent Role="Task">
-              <PropertyRef Name="Project_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="FinalFSEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Parent_Task" EntityType="Self.Parent_Task" />
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Task__Parent_ID__4F7CD00D" Association="Self.FK__Task__Parent_ID__4F7CD00D">
-            <End Role="Parent_Task" EntitySet="Parent_Task" />
-            <End Role="Task" EntitySet="Tasks" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Task__Project_ID__5070F446" Association="Self.FK__Task__Project_ID__5070F446">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Task" EntitySet="Tasks" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>

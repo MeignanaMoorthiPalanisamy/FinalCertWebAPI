@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer;
+using FinalCertWebAPI.Filters;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,7 @@ namespace FinalCertWebAPI.Controllers
     /// WebAPI controller to handle all requests related to User 
     /// </summary>
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [CustomExceptionFilter]
     public class UserController : ApiController
     {
         private IProjectManagerContext db = new FinalFSEEntities();

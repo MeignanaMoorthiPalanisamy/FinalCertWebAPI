@@ -13,6 +13,8 @@ namespace FinalCert.Tests
         {
             this.Users = new TestUserDbSet();
             this.Projects = new TestProjectDbSet();
+            this.Tasks = new TestTaskDbSet();
+            this.Parent_Task = new TestParentTaskDbSet();
         }
 
         public  DbSet<Parent_Task> Parent_Task { get; set; }

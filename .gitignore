@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /.axoCover/runs/run_2018-12-16_16-44-45
+/.axoCover

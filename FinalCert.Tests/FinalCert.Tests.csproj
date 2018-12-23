@@ -78,6 +78,8 @@
     <Compile Include="TestDbSet.cs" />
     <Compile Include="TestProjectMangerContext.cs" />
     <Compile Include="TestUserDbSet.cs" />
+    <Compile Include="ParentTaskControllerTests.cs" />
+    <Compile Include="TaskControllerTests.cs" />
     <Compile Include="UserControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

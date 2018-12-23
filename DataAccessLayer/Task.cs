@@ -24,8 +24,7 @@ namespace DataAccessLayer
         public Nullable<System.DateTime> End_Date { get; set; }
         public Nullable<int> Priority { get; set; }
         public string Status { get; set; }
-    
-        public virtual Parent_Task Parent_Task { get; set; }
-        public virtual Project Project { get; set; }
+
+        public int User_ID { set; get; }
     }
 }

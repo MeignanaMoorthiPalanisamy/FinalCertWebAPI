@@ -111,7 +111,7 @@ namespace FinalCert.Tests
             var result = controller.GetUsers() as TestUserDbSet;
 
             Assert.IsNotNull(result);
-            Assert.AreEqual(3, result.Local.Count);
+            Assert.AreEqual(3, result.Local.Count); 
         }
 
         [Test]

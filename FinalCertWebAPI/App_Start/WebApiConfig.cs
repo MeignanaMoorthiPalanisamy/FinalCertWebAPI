@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinalCertWebAPI.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -14,6 +15,7 @@ namespace FinalCertWebAPI
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+            config.Filters.Add(new CustomExceptionFilter());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

@@ -12,10 +12,12 @@ using DataAccessLayer;
 using FinalCertWebAPI.Models;
 using AutoMapper;
 using System.Web.Http.Cors;
+using FinalCertWebAPI.Filters;
 
 namespace FinalCertWebAPI.Controllers
 {
     [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [CustomExceptionFilter]
     public class ProjectsController : ApiController
     {
         private IProjectManagerContext db = new FinalFSEEntities();
@@ -103,6 +105,19 @@ namespace FinalCertWebAPI.Controllers
             {               
                 throw;
             }
+
+
+            var changeUser = db.Users.Find(project.Project_Id);
+            changeUser.Project_ID = null;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             var user = db.Users.Find(projectModal.User_ID);
             user.Project_ID = project.Project_Id;
             try
