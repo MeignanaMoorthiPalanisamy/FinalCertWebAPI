@@ -16,7 +16,7 @@ using FinalCertWebAPI.Filters;
 
 namespace FinalCertWebAPI.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [CustomExceptionFilter]
     public class ProjectsController : ApiController
     {
@@ -75,7 +75,7 @@ namespace FinalCertWebAPI.Controllers
 
             return Ok(project);
         }
-
+     
         // PUT: api/Projects/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProject(int id, ProjectDetailModel projectModal)
@@ -109,7 +109,7 @@ namespace FinalCertWebAPI.Controllers
             }
 
 
-            var changeUser = db.Users.Find(project.Project_Id);
+            var changeUser = db.Users.Where(x => x.Project_ID == project.Project_Id).FirstOrDefault();
             changeUser.Project_ID = null;
             try
             {

@@ -16,7 +16,7 @@ using FinalCertWebAPI.Models;
 namespace FinalCertWebAPI.Controllers
 {
 
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [CustomExceptionFilter]
     public class TasksController : ApiController
     {
@@ -99,7 +99,7 @@ namespace FinalCertWebAPI.Controllers
             }
 
 
-            var changeUser = db.Users.Find(task.Task_ID);
+            var changeUser = db.Users.Where(x => x.Task_ID == task.Task_ID).FirstOrDefault();
             changeUser.Task_ID = null;
             try
             {

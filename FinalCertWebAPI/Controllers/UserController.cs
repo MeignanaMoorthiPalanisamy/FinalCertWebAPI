@@ -12,7 +12,7 @@ namespace FinalCertWebAPI.Controllers
     /// <summary>
     /// WebAPI controller to handle all requests related to User 
     /// </summary>
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [CustomExceptionFilter]
     public class UserController : ApiController
     {

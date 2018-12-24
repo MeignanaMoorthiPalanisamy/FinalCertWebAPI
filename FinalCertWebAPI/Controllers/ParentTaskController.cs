@@ -15,7 +15,7 @@ using FinalCertWebAPI.Filters;
 namespace FinalCertWebAPI.Controllers
 {
 
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [CustomExceptionFilter]
 
     //Comment added for Jenknis build process
@@ -38,7 +38,7 @@ namespace FinalCertWebAPI.Controllers
         {
             return db.Parent_Task;
         }
-               
+
         // POST: api/ParentTask
         [ResponseType(typeof(Parent_Task))]
         public IHttpActionResult PostParent_Task(Parent_Task parent_Task)
